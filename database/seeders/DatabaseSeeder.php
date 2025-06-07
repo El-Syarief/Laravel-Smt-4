@@ -28,6 +28,20 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Hogwarts',
             'foto' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',
             'qrCode' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',
+            'status' => 'aktif',
+            'role' => 'user',
+        ]);
+
+        user::create([
+            'namaUsaha' => 'amir',
+            'email' => 'amir@gmail.com',
+            'password' => bcrypt('amir123'),
+            'noTelp' => '08123456789',
+            'alamat' => 'babelan',
+            'foto' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',
+            'qrCode' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',
+            'status' => 'aktif',
+            'role' => 'admin',
         ]);
     }
 }

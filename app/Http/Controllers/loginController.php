@@ -25,14 +25,14 @@ class loginController extends Controller
             return back()->with('error', 'Email atau password tidak sesuai');
         }
 
-        // if (Auth::attempt($credentials)) {
-        //     if (Auth::user()->status == 0) {
-        //         Auth::logout();
-        //         return back()->with('error', 'User belum aktif');
-        //     }
-        //     $request->session()->regenerate();
-        //     return redirect()->intended(route('backend.beranda'));
-        // }
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->status == 'nonaktif') {
+                Auth::logout();
+                return back()->with('error', 'User belum aktif');
+            }
+            $request->session()->regenerate();
+            return redirect()->intended(route('backend.beranda'));
+        }
         return back()->with('error', 'Login Gagal');
     }
 
@@ -50,19 +50,22 @@ class loginController extends Controller
             $validateData =  $request->validate([
                 'email' => 'required|email|unique:user',
                 'password' => 'required|min:6|confirmed',
+                'namaUsaha' => 'required|string|max:100',
+                'noTelp' => 'required|string|max:20',
             ]);
-
-            $validateData['name'] = 'contoh nama'; 
-            $validateData['status'] = 0; // Misalnya, akun belum aktif secara default
+            $validateData['namaUsaha'] = $request->namaUsaha;
+            $validateData['noTelp'] = $request->noTelp;
+            $validateData['email'] = $request->email;
             $validateData['password'] = bcrypt($validateData['password']);
+            $validateData['status'] = 'aktif';
+            $validateData['role'] = 'user';
+            $validateData['alamat'] = 'contoh alamat';
+            $validateData['foto'] = 'default-foto.png';
+            $validateData['qrCode'] = 'www.example.com/qr-code.png';
             $validateData['created_at'] = now();
             $validateData['updated_at'] = now();
-            $validatedData['noTelp'] = '08xxxxxxxxx';
-            $validatedData['alamat'] = 'contoh alamat';
-            $validatedData['foto'] = 'default-foto.png';
-            $validatedData['qrCode'] = 'www.example.com/qr-code.png';
 
-            $user = User::create($validatedData);
+            $user = User::create($validateData);
 
             $user->save();
 

@@ -27,6 +27,8 @@ class User extends Authenticatable
         'alamat',
         'foto',
         'qrCode',
+        'status',
+        'role',
     ];
 
     public function barang(){

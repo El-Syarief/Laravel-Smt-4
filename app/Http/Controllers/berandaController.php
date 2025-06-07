@@ -8,7 +8,9 @@ class berandaController extends Controller
 {
     public function berandaBackend()
     {
-        return view('backend.beranda');
+        return view('backend.v_beranda.beranda', [
+            'judul' => 'Beranda',
+        ]);
     }
 
 }

@@ -18,10 +18,20 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('landing.home');
+})->name('landing.home');
 
+Route::get('backend/beranda', [BerandaController::class, 'berandaBackend']) -> name('backend.beranda');
+
+Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login'); 
+Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->name('backend.login'); 
+Route::get('backend/register', [LoginController::class, 'registerBackend'])->name('backend.register');
+Route::post('backend/register', [LoginController::class, 'registerBackend'])->name('backend.register');
+Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
 
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 Route::resource('backend/barang', BarangController::class, ['as' => 'backend'])->middleware('auth');

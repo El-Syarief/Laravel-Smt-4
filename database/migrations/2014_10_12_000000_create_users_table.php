@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('alamat', 255)->nullable();
             $table->string('foto', 255)->nullable();
             $table->string('qrCode', 255)->nullable();
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
+            $table->enum('role', ['admin', 'user'])->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
