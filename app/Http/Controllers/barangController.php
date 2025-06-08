@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barang = Barang::where('idUser', Auth::user()->idUser)->get();
+        $barang = Barang::where('idUser', Auth::user()->idUser)->paginate(10);
         return view('backend.v_barang.index', compact('barang'));
     }
 
@@ -23,29 +24,33 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // Ubah validasi untuk foto menjadi 'image'
             'fotoBrg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'namaBrg' => 'required|max:100',
             'kodeBrg' => 'required|unique:barang,kodeBrg',
-            'stokBrg' => 'nullable|integer|min:0',
-            'hrgModal' => 'nullable|numeric',
-            'hrgJual' => 'nullable|numeric',
+            'stokBrg' => 'required|integer|min:1',
+            'hrgModal' => 'required|numeric|min:0',
+            'hrgJual' => 'required|numeric|min:0',
         ]);
 
-        $path = null;
-        if ($request->hasFile('fotoBrg')) {
-            // Simpan file di folder 'public/products' dan dapatkan path-nya
-            $path = $request->file('fotoBrg')->store('products', 'public');
-        }
+        $path = $request->file('fotoBrg')->store('products', 'public');
 
-        Barang::create([
+        $barang = Barang::create([
             'idUser' => Auth::user()->idUser,
-            'fotoBrg' => $path, // Simpan path file ke database
+            'fotoBrg' => $path,
             'namaBrg' => $request->namaBrg,
             'kodeBrg' => $request->kodeBrg,
             'stokBrg' => $request->stokBrg,
             'hrgModal' => $request->hrgModal,
             'hrgJual' => $request->hrgJual,
+        ]);
+
+        $totalBiayaModal = $request->hrgModal * $request->stokBrg;
+
+        Pengeluaran::create([
+            'idUser' => Auth::id(),
+            'deskripsi' => 'Pembelian stok: ' . $barang->namaBrg . ' (x' . $barang->stokBrg . ')',
+            'jumlah' => $totalBiayaModal,
+            'tanggal' => now(),
         ]);
 
         return redirect()->route('backend.barang.index')->with('success', 'Barang berhasil ditambahkan');
@@ -62,7 +67,7 @@ class BarangController extends Controller
         $barang = Barang::where('idUser', Auth::user()->idUser)->findOrFail($id);
 
         $request->validate([
-            'fotoBrg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // foto tidak wajib diisi saat update
+            'fotoBrg' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'namaBrg' => 'required|max:100',
             'kodeBrg' => 'required|unique:barang,kodeBrg,' . $barang->idBrg . ',idBrg',
             'stokBrg' => 'nullable|integer|min:0',
@@ -70,13 +75,11 @@ class BarangController extends Controller
             'hrgJual' => 'nullable|numeric',
         ]);
         
-        $path = $barang->fotoBrg; // Path default adalah path foto lama
+        $path = $barang->fotoBrg;
         if ($request->hasFile('fotoBrg')) {
-            // Jika ada file baru diupload, hapus file lama
             if ($barang->fotoBrg) {
                 Storage::disk('public')->delete($barang->fotoBrg);
             }
-            // Simpan file baru dan perbarui path
             $path = $request->file('fotoBrg')->store('products', 'public');
         }
 
@@ -104,4 +107,45 @@ class BarangController extends Controller
 
         return redirect()->route('backend.barang.index')->with('success', 'Barang berhasil dihapus');
     }
-}
+
+     public function showAddStockForm(Barang $barang)
+    {
+        
+        if ($barang->idUser !== Auth::id()) {
+            abort(403);
+        }
+        return view('backend.v_barang.add-stock', compact('barang'));
+    }
+
+    public function addStock(Request $request, Barang $barang)
+    {
+        
+        if ($barang->idUser !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'jumlah_tambah' => 'required|integer|min:1',
+            'harga_modal_baru' => 'required|numeric|min:0'
+        ]);
+
+        
+        $totalBiaya = $validated['jumlah_tambah'] * $validated['harga_modal_baru'];
+        
+        
+        Pengeluaran::create([
+            'idUser' => Auth::id(),
+            'deskripsi' => 'Penambahan stok: ' . $barang->namaBrg . ' (x' . $validated['jumlah_tambah'] . ')',
+            'jumlah' => $totalBiaya,
+            'tanggal' => now(),
+            'idBrg' => $barang->idBrg,
+        ]);
+
+        
+        $barang->hrgModal = $validated['harga_modal_baru'];
+        $barang->increment('stokBrg', $validated['jumlah_tambah']);
+        $barang->save();
+
+            return redirect()->route('backend.barang.index')->with('success', 'Stok berhasil ditambahkan!');
+        }
+    }

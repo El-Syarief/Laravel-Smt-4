@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/css/landing-page.css",
                 "resources/css/manajemen-stok.css",
 
+                "reources/css/transaksi.css",
                 "resources/js/app.js",
             ],
             refresh: true,

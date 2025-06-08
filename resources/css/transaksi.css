@@ -1,0 +1,230 @@
+:root {
+    --primary-blue: #2d78db;
+    --background-content: #f4f7fa;
+    --card-background: #ffffff;
+    --text-dark: #333333;
+    --text-light: #667085;
+    --border-color: #eaecf0;
+}
+
+.transaksi-container {
+    padding: 30px;
+    background-color: var(--background-content);
+}
+
+/* Menggunakan CSS Grid untuk layout yang lebih solid */
+.transaksi-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Kolom kiri 2 bagian, kolom kanan 1 bagian */
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.product-selection {
+    /* Tidak perlu properti flex lagi */
+}
+
+.cart-section {
+    position: sticky;
+    top: 30px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: 0;
+}
+.page-header p {
+    font-size: 16px;
+    color: var(--text-light);
+    margin: 5px 0 0 0;
+}
+.btn-secondary {
+    background-color: #f2f4f7;
+    color: #344054;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.btn-process {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+.btn-process:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+.search-bar input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+}
+.search-bar .icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    width: 20px;
+    height: 20px;
+}
+
+/* PERBAIKAN: Menambahkan max-height dan scroll */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    max-height: 70vh; /* Batas tinggi maksimal */
+    overflow-y: auto; /* Tambahkan scroll jika konten melebihi batas */
+    padding-right: 10px; /* Sedikit ruang untuk scrollbar */
+}
+
+.product-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--card-background);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.product-card img {
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    background-color: #f0f2f5;
+}
+.product-card .info {
+    padding: 12px;
+}
+.product-card .info h3 {
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    color: var(--text-dark);
+}
+.product-card .info p {
+    font-size: 14px;
+    margin: 0;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.cart {
+    background: var(--card-background);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 24px;
+}
+
+/* PERBAIKAN: Mengatur header keranjang agar tidak tumpang tindih */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+.cart-header h2 {
+    font-size: 20px;
+    margin: 0;
+}
+.cart-header p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* PERBAIKAN: Menambahkan max-height dan scroll untuk item keranjang */
+#cart-items-container {
+    max-height: 250px; /* Sesuaikan tinggi sesuai kebutuhan */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.cart-item-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.cart-item .details {
+    flex-grow: 1;
+}
+.cart-item h4,
+.cart-item p {
+    margin: 0;
+    font-size: 14px;
+}
+.cart-item .qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.cart-item .price {
+    font-weight: 600;
+    white-space: nowrap;
+}
+.cart-summary {
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.summary-row.total {
+    font-weight: 800;
+    font-size: 16px;
+}
+.payment-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 16px 0;
+}
+.change-display {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background: #f0f2f5;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 16px 0;
+}

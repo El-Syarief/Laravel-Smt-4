@@ -5,8 +5,6 @@
     --text-dark: #333333;
     --text-light: #667085;
     --border-color: #eaecf0;
-    --status-bg: #ecfdf3;
-    --status-text: #027a48;
 }
 
 .stok-container {
@@ -61,6 +59,7 @@
     display: flex;
     gap: 16px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .search-bar {
@@ -150,12 +149,24 @@
     color: var(--text-light);
 }
 
-.pagination-buttons button {
+.pagination-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.pagination-buttons a,
+.pagination-buttons span {
     padding: 8px 16px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: white;
     font-weight: 600;
     cursor: pointer;
-    margin-left: 8px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.pagination-buttons span {
+    color: #a0aec0;
+    cursor: not-allowed;
 }
