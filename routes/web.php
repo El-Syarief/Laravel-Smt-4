@@ -4,34 +4,32 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\berandaController;
-use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\berandaController; // Tidak kita perlukan lagi untuk rute ini
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Rute untuk landing page (sebelum login)
 Route::get('/', function () {
     return view('landing.home');
 })->name('landing.home');
 
-Route::get('backend/beranda', [BerandaController::class, 'berandaBackend']) -> name('backend.beranda');
+// Rute untuk dasbor (setelah login), sekarang mengarah ke file view yang sama
+Route::get('backend/beranda', function() {
+    return view('landing.home');
+})->name('backend.beranda')->middleware('auth');
 
-Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login'); 
-Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->name('backend.login'); 
+
+// Rute untuk otentikasi
+Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('login'); 
+Route::post('backend/login', [LoginController::class, 'authenticateBackend']); 
 Route::get('backend/register', [LoginController::class, 'registerBackend'])->name('backend.register');
-Route::post('backend/register', [LoginController::class, 'registerBackend'])->name('backend.register');
+Route::post('backend/register', [LoginController::class, 'registerBackend']);
 Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
 
+// Rute untuk resource lainnya (tetap butuh controller masing-masing)
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 Route::resource('backend/barang', BarangController::class, ['as' => 'backend'])->middleware('auth');

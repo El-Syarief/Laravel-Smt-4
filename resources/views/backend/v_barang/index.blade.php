@@ -1,48 +1,88 @@
-@extends('layouts.app')
+@extends('backend.v_layouts.app')
+
+@section('title', 'Manajemen Stok')
+
+@push('styles')
+    {{-- Memuat file CSS khusus untuk halaman ini --}}
+    @vite('resources/css/manajemen-stok.css')
+@endpush
 
 @section('content')
-<h3>Daftar Barang</h3>
+<div class="stok-container">
+    {{-- Header Halaman --}}
+    <div class="page-header">
+        <div>
+            <h1>Manajemen Stok</h1>
+            <p>Kelola Semua Produk Anda</p>
+        </div>
+        <a href="{{ route('backend.barang.create') }}" class="btn-add">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" /></svg>
+            Tambah Produk Baru
+        </a>
+    </div>
 
-<a href="{{ route('backend.barang.create') }}">
-    <button>+ Tambah Barang</button>
-</a>
+    {{-- Kartu Konten Utama --}}
+    <div class="content-card">
+        {{-- Bagian Filter dan Pencarian --}}
+        <div class="filter-section">
+            <div class="search-bar">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" /></svg>
+                </span>
+                <input type="text" placeholder="Cari Produk...">
+            </div>
+            <div class="filter-dropdown">
+                <select>
+                    <option>Semua Kategori</option>
+                </select>
+            </div>
+        </div>
 
-@if(session('success'))
-    <p style="color:green">{{ session('success') }}</p>
-@endif
+        {{-- Tabel Stok --}}
+        <table class="stok-table">
+            <thead>
+                <tr>
+                    <th>NAMA PRODUK</th>
+                    <th>KODE PRODUK</th>
+                    <th>STOK</th>
+                    <th>HARGA JUAL</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($barang as $item)
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img src="{{ asset('storage/' . $item->fotoBrg) }}" alt="{{ $item->namaBrg }}">
+                            <span>{{ $item->namaBrg }}</span>
+                        </div>
+                    </td>
+                    <td>{{ $item->kodeBrg }}</td>
+                    <td>{{ $item->stokBrg }}</td>
+                    <td>Rp{{ number_format($item->hrgJual, 0, ',', '.') }}</td>
+                    <td>
+                        <a href="{{ route('backend.barang.edit', $item->idBrg) }}" class="action-link">Edit</a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px;">Anda belum memiliki produk.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
 
-<table border="1" cellpadding="10" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Foto</th>
-            <th>Nama</th>
-            <th>Kode</th>
-            <th>Stok</th>
-            <th>Harga Modal</th>
-            <th>Harga Jual</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($barang as $item)
-        <tr>
-            <td><img src="{{ $item->fotoBrg }}" width="80"></td>
-            <td>{{ $item->namaBrg }}</td>
-            <td>{{ $item->kodeBrg }}</td>
-            <td>{{ $item->stokBrg }}</td>
-            <td>Rp{{ number_format($item->hrgModal, 0, ',', '.') }}</td>
-            <td>Rp{{ number_format($item->hrgJual, 0, ',', '.') }}</td>
-            <td>
-                <a href="{{ route('backend.barang.edit', $item->idBrg) }}">Edit</a>
-                |
-                <form action="{{ route('backend.barang.destroy', $item->idBrg) }}" method="POST" style="display:inline-block;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+        {{-- Bagian Paginasi --}}
+        <div class="pagination-section">
+            <div class="pagination-info">
+                Menampilkan {{ $barang->count() }} dari {{ $barang->count() }} hasil
+            </div>
+            <div class="pagination-buttons">
+                <button>Sebelumnya</button>
+                <button>Selanjutnya</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

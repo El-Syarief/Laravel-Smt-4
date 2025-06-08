@@ -3,72 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Simanis - Platform Bisnis</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
-    <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #88938d; color: #111; }
-        header, footer { background-color: #214055; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: 600; }
-        .hero { display: flex; justify-content: space-between; align-items: center; padding: 60px; }
-        .hero-text h1 { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .hero-text p { max-width: 500px; margin-bottom: 30px; }
-        .hero-buttons button { margin-right: 10px; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .btn-primary { background-color: #2d78db; color: white; }
-        .btn-secondary { background-color: #ccc; color: #333; }
-        .features { text-align: center; padding: 50px; }
-        .features h3 { font-size: 22px; margin-bottom: 30px; }
-        .feature-list { display: flex; justify-content: center; gap: 50px; }
-        .feature { background: #aeb7b1; padding: 20px; border-radius: 10px; width: 180px; }
-        footer a { color: white; text-decoration: none; margin: 0 10px; font-weight: 500; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    @vite('resources/css/landing-page.css')
 </head>
 <body>
 
 <header>
-    <div><strong>Simanis</strong></div>
+    <div class="logo"><strong>Simanis</strong></div>
     <nav>
-        <a href="#" class="active">Home</a>
-        <a href="#">Transaksi</a>
-        <a href="#">Stok</a>
-        <a href="#">Cetak Laba</a>
-        <a href="{{ route('backend.login') }}">Masuk</a>
-        <a href="{{ route('backend.register') }}">
-            <button class="btn-primary">Daftar</button>
-        </a>
+        {{-- Jika sudah login, link Home mengarah ke dasbor --}}
+        @auth
+            <a href="{{ route('backend.beranda') }}" class="active">Home</a>
+            <a href="#">Transaksi</a>
+            <a href="{{ route('backend.barang.index') }}">Stok</a>
+            <a href="#">Cetak Laba</a>
+        @else
+        {{-- Jika belum login, link Home mengarah ke landing page --}}
+            <a href="{{ route('landing.home') }}" class="active">Home</a>
+            <a href="#">Transaksi</a>
+            <a href="#">Stok</a>
+            <a href="#">Cetak Laba</a>
+        @endauth
     </nav>
+    <div class="user-section">
+        {{-- Logika untuk menampilkan bagian user sesuai status login --}}
+        @auth
+            <div class="user-profile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.92V18h11v-1.58C17.5,14.23,15.04,12.5,12,12.5z M12,2C9.24,2,7,4.24,7,7s2.24,5,5,5s5-2.24,5-5S14.76,2,12,2z"/></svg>
+                <span>{{ Auth::user()->namaUsaha }}</span>
+                {{-- Form untuk logout --}}
+                <form action="{{ route('backend.logout') }}" method="POST" style="display:inline; margin-left: 15px;">
+                    @csrf
+                    <button type="submit" style="background:none; border:none; color:white; font-family:'Inter',sans-serif; font-weight:500; cursor:pointer; font-size:16px;">Logout</button>
+                </form>
+            </div>
+        @else
+            <a href="{{ route('login') }}">Masuk</a>
+            <a href="{{ route('backend.register') }}" class="btn-primary" style="padding: 8px 15px;">Daftar</a>
+        @endauth
+    </div>
 </header>
 
 <section class="hero">
     <div class="hero-text">
-        <h1>Perbaiki Usaha Anda Menjadi Lebih Baik Dengan Simanis</h1>
-        <p>Platform kami memberikan semua yang bisnis anda butuhkan untuk aaaaaaaaaaaaaaaaaa...</p>
-        <div class="hero-buttons">
-            <!-- <a href="{{ route('backend.register') }}"><button class="btn-primary">Daftar</button></a>
-            <a href="{{ route('backend.login') }}"><button class="btn-secondary">Masuk</button></a> -->
-        </div>
+        {{-- Menggunakan @guest dan @auth untuk mengubah judul dan tombol --}}
+        @guest
+            <h1>Perbaiki Usaha Anda Menjadi Lebih Baik Dengan Simanis</h1>
+            <p>Platform kami memberikan semua yang bisnis anda butuhkan untuk pengelolaan stok, transaksi, dan laporan usaha dengan lebih mudah dan efisien.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Selengkapnya</a>
+            </div>
+        @endguest
+
+        @auth
+            <h1>Selamat Datang Kembali, {{ Auth::user()->namaUsaha }}!</h1>
+            <p>Platform kami memberikan semua yang bisnis anda butuhkan untuk pengelolaan stok, transaksi, dan laporan usaha dengan lebih mudah dan efisien.</p>
+            <div class="hero-buttons">
+                <a href="{{ route('backend.barang.index') }}" class="btn-primary">Lihat Stok Barang</a>
+            </div>
+        @endauth
     </div>
     <div class="hero-image">
-        <img src="{{ asset('backend/images/SIMANIS-no-bg.png') }}" width="250" alt="Logo Simanis">
+        <img src="{{ asset('backend/images/SIMANIS-no-bg.png') }}" alt="Logo Simanis">
     </div>
 </section>
 
+{{-- Section fitur ini sama untuk kedua kondisi, jadi tidak perlu diubah --}}
 <section class="features">
-    <h3>Semua Kebutuhan Bisnis Yang Anda Perlukan</h3>
-    <p>Fokus pada pengembangan bisnis Anda. Biarkan kami yang mengurus hal-hal teknis yang rumit.</p>
+    <h2>Semua Kebutuhan Bisnis Yang Anda Perlukan</h2>
+    <p class="subtitle">Fokus pada pengembangan bisnis Anda. Biarkan kami yang mengurus hal-hal teknis yang rumit.</p>
 
     <div class="feature-list">
         <div class="feature">
-            <div>Logo</div>
-            <strong>Transaksi</strong>
+            <div class="icon-placeholder">Logo</div>
+            <h3>Transaksi</h3>
             <p>Proses penjualan cepat dan mudah.</p>
         </div>
         <div class="feature">
-            <div>Logo</div>
-            <strong>Manajemen Stok</strong>
+            <div class="icon-placeholder">Logo</div>
+            <h3>Manajemen Stok</h3>
             <p>Pantau stok real-time.</p>
         </div>
         <div class="feature">
-            <div>Logo</div>
-            <strong>Cetak Laba</strong>
+            <div class="icon-placeholder">Logo</div>
+            <h3>Cetak Laba</h3>
             <p>Hasilkan laporan otomatis.</p>
         </div>
     </div>

@@ -1,42 +1,80 @@
-@extends('layouts.app')
+@extends('backend.v_layouts.app')
+
+@section('title', 'Tambah Produk Baru')
+
+@push('styles')
+    @vite('resources/css/manajemen-stok.css')
+@endpush
 
 @section('content')
-<h3>Tambah Barang</h3>
+<div class="stok-container">
+    <div class="page-header">
+        <div>
+            <h1>Tambah Produk Baru</h1>
+            <p>Isi detail produk di bawah ini</p>
+        </div>
+    </div>
 
-<form action="{{ route('backend.barang.store') }}" method="POST">
-    @csrf
+    {{-- Kartu Konten Utama --}}
+    <div class="content-card">
 
-    <label>Foto (URL)</label><br>
-    <input type="text" name="fotoBrg" value="{{ old('fotoBrg') }}">
-    @error('fotoBrg') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
+        <form action="{{ route('backend.barang.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-body">
+                <div class="form-group">
+                    <label for="namaBrg">Nama Produk</label>
+                    <input type="text" name="namaBrg" id="namaBrg" value="{{ old('namaBrg') }}" required>
+                    @error('namaBrg') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
 
-    <label>Nama Barang</label><br>
-    <input type="text" name="namaBrg" value="{{ old('namaBrg') }}">
-    @error('namaBrg') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
+                <div class="form-group">
+                    <label for="kodeBrg">Kode Produk</label>
+                    <input type="text" name="kodeBrg" id="kodeBrg" value="{{ old('kodeBrg') }}" required>
+                    @error('kodeBrg') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
 
-    <label>Kode Barang</label><br>
-    <input type="text" name="kodeBrg" value="{{ old('kodeBrg') }}">
-    @error('kodeBrg') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
+                <div class="form-group">
+                    <label for="stokBrg">Stok Awal</label>
+                    <input type="number" name="stokBrg" id="stokBrg" value="{{ old('stokBrg', 0) }}">
+                    @error('stokBrg') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
 
-    <label>Stok</label><br>
-    <input type="number" name="stokBrg" value="{{ old('stokBrg') }}">
-    @error('stokBrg') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
+                <div class="form-group">
+                    <label for="hrgModal">Harga Modal (Rp)</label>
+                    <input type="number" name="hrgModal" id="hrgModal" value="{{ old('hrgModal') }}">
+                    @error('hrgModal') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
 
-    <label>Harga Modal</label><br>
-    <input type="number" name="hrgModal" value="{{ old('hrgModal') }}">
-    @error('hrgModal') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
+                <div class="form-group">
+                    <label for="hrgJual">Harga Jual (Rp)</label>
+                    <input type="number" name="hrgJual" id="hrgJual" value="{{ old('hrgJual') }}" required>
+                    @error('hrgJual') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="fotoBrg">Foto Produk</label>
+                    {{-- Ubah input menjadi type="file" --}}
+                    <input type="file" name="fotoBrg" id="fotoBrg" required>
+                    @error('fotoBrg') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                <a href="{{ route('backend.barang.index') }}" class="btn-secondary">Batal</a>
+                <button type="submit" class="btn-add">Simpan Produk</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-    <label>Harga Jual</label><br>
-    <input type="number" name="hrgJual" value="{{ old('hrgJual') }}">
-    @error('hrgJual') <div style="color:red">{{ $message }}</div> @enderror
-    <br><br>
-
-    <button type="submit">Simpan</button>
-    <a href="{{ route('backend.barang.index') }}"><button type="button">Batal</button></a>
-</form>
+{{-- Tambahan CSS untuk Form --}}
+<style>
+    .form-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label { margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+    .form-group input { padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 16px; }
+    .form-footer { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+    .btn-secondary { background-color: #F2F4F7; color: #344054; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+    .error-message { color: red; font-size: 12px; margin-top: 5px; }
+</style>
 @endsection

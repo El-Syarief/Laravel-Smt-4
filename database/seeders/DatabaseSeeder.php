@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         user::create([
             'namaUsaha' => 'simanis hogwarts',
             'email' => 'simanis@gmail.com',
-            'password' => bcrypt('simanis123'),
+            'password' => 'simanis123',
             'noTelp' => '08123456789',
             'alamat' => 'Hogwarts',
             'foto' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         user::create([
             'namaUsaha' => 'amir',
             'email' => 'amir@gmail.com',
-            'password' => bcrypt('amir123'),
+            'password' => 'amir123',
             'noTelp' => '08123456789',
             'alamat' => 'babelan',
             'foto' => 'https://i.pinimg.com/564x/3c/0f/1b/3c0f1b6d2e4a7d8e5c9f8a2b6f4b5c7d.jpg',

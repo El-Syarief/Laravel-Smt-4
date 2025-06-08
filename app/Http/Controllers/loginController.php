@@ -14,34 +14,50 @@ class loginController extends Controller
             'judul' => 'Login',
         ]);
     }
-    public function authenticateBackend(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+    // app/Http/Controllers/loginController.php
 
-        if (!Auth::validate($credentials)) {
-            return back()->with('error', 'Email atau password tidak sesuai');
+public function authenticateBackend(Request $request)
+{
+    // 1. Validasi input dari form login
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    // 2. Langsung coba untuk melakukan login dengan kredensial yang diberikan
+    // Auth::attempt() sudah otomatis memeriksa email dan password ke database
+    if (Auth::attempt($credentials)) {
+        
+        // 3. Setelah login berhasil, periksa apakah status user aktif
+        if (Auth::user()->status == 'nonaktif') {
+            // Jika tidak aktif, paksa logout kembali, hancurkan sesi, dan beri pesan error
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return back()->with('error', 'Akun Anda belum aktif. Silakan hubungi administrator.');
         }
 
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->status == 'nonaktif') {
-                Auth::logout();
-                return back()->with('error', 'User belum aktif');
-            }
-            $request->session()->regenerate();
-            return redirect()->intended(route('backend.beranda'));
-        }
-        return back()->with('error', 'Login Gagal');
+        // 4. Jika user aktif, amankan sesi dan arahkan ke halaman dasbor
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('backend.beranda'));
     }
+
+    // 5. Jika Auth::attempt() gagal (email atau password salah), kembali ke halaman login dengan pesan error
+    return back()->withErrors([
+        'email' => 'Login gagal! Email atau Password yang Anda masukkan tidak sesuai.',
+    ])->onlyInput('email');
+}
 
     public function logoutBackend()
     {
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect(route('backend.login'));
+
+
+        return redirect(route('login'));
     }
 
     public function registerBackend(Request $request)
@@ -56,7 +72,7 @@ class loginController extends Controller
             $validateData['namaUsaha'] = $request->namaUsaha;
             $validateData['noTelp'] = $request->noTelp;
             $validateData['email'] = $request->email;
-            $validateData['password'] = bcrypt($validateData['password']);
+            $validateData['password'] = $request->password;
             $validateData['status'] = 'aktif';
             $validateData['role'] = 'user';
             $validateData['alamat'] = 'contoh alamat';

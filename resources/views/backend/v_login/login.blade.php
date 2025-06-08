@@ -72,11 +72,11 @@
     <div class="left">
         <p style="font-size: 20px;">Welcome!</p>
         <img src="{{ asset('backend/images/SIMANIS-no-bg.png') }}" alt="simanis-logo">
-        <!-- <h2 style="margin-top: 10px;"><span style="color:#29464f;">si</span><span style="color:#f3c24b;">manis</span></h2> -->
     </div>
 
     <div class="right">
-        <form class="form-container" method="POST" action="{{ route('backend.login') }}">
+        {{-- Pastikan action-nya memanggil route 'login' --}}
+        <form class="form-container" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">
                 <label for="email">Masukkan alamat email</label>

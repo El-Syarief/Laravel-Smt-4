@@ -2,62 +2,60 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Simanis')</title>
+    {{-- Judul halaman akan dinamis, defaultnya 'Simanis' --}}
+    <title>@yield('title', 'Simanis') - Dasbor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{-- Font dan CSS sederhana --}}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #f5f5f5; color: #333; }
-        header, footer { background-color: #214055; color: #fff; padding: 15px 30px; }
-        nav a { color: #fff; text-decoration: none; margin-right: 20px; font-weight: 600; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
-        .nav-right { float: right; }
-        footer { text-align: center; font-size: 14px; margin-top: 40px; }
-        .btn { padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-        .btn-primary { background-color: #2d78db; color: white; }
-        .btn-secondary { background-color: #ddd; color: #333; }
-    </style>
+    {{-- Link ke Font dan CSS dari Vite --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    {{-- Memuat CSS yang sama dengan landing page --}}
+    @vite('resources/css/landing-page.css')
 
-    @stack('styles') {{-- Tambahan style khusus per halaman --}}
+    {{-- Untuk tambahan style jika ada halaman yg butuh css khusus --}}
+    @stack('styles')
 </head>
 <body>
 
-    {{-- Header dan Navigasi --}}
+    {{-- Header ini sekarang identik dengan landing page --}}
     <header>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div><strong>Simanis</strong></div>
-            <nav>
-                <a href="{{ route('backend.beranda') }}">Home</a>
-                @auth
-                    <a href="{{ route('backend.barang.index') }}">Stok</a>
-                    <a href="#">Transaksi</a>
-                    <a href="#">Cetak Laba</a>
-                    <a href="{{ route('backend.user.show', Auth::user()->idUser) }}">Profil</a>
-                    <a href="{{ route('backend.logout') }}">Logout</a>
-                @else
-                    <a href="{{ route('backend.login') }}">Masuk</a>
-                    <a href="{{ route('backend.register') }}"><button class="btn btn-primary">Daftar</button></a>
-                @endauth
-            </nav>
+        <div class="logo"><strong>Simanis</strong></div>
+        <nav>
+            <a href="{{ route('backend.beranda') }}" class="{{ request()->routeIs('backend.beranda') ? 'active' : '' }}">Home</a>
+            <a href="#">Transaksi</a>
+            <a href="{{ route('backend.barang.index') }}" class="{{ request()->routeIs('backend.barang.index') ? 'active' : '' }}">Stok</a>
+            <a href="#">Cetak Laba</a>
+        </nav>
+        <div class="user-section">
+            {{-- Karena ini layout setelah login, kita hanya perlu bagian @auth --}}
+            @auth
+                <div class="user-profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.92V18h11v-1.58C17.5,14.23,15.04,12.5,12,12.5z M12,2C9.24,2,7,4.24,7,7s2.24,5,5,5s5-2.24,5-5S14.76,2,12,2z"/></svg>
+                    <span>{{ Auth::user()->namaUsaha }}</span>
+                </div>
+                {{-- Tambahkan link logout di sini jika perlu, atau di dalam dropdown profil nanti --}}
+            @endauth
         </div>
     </header>
 
-    {{-- Konten Utama --}}
-    <div class="container">
+    {{-- Konten Utama yang akan diisi oleh halaman lain seperti beranda.blade.php --}}
+    <main>
         @yield('content')
-    </div>
+    </main>
 
-    {{-- Footer --}}
+    {{-- Footer ini juga identik dengan landing page --}}
     <footer>
-        © {{ date('Y') }} Simanis. Semua hak cipta dilindungi.
+        <div>© 2025 Simanis. Semua hak cipta dilindungi.</div>
+        <div>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+        </div>
     </footer>
 
-    @stack('scripts') {{-- Tambahan JS khusus per halaman --}}
+    {{-- Untuk tambahan script jika ada halaman yg butuh JS khusus --}}
+    @stack('scripts')
 </body>
 </html>
-{{-- 
-    Catatan: 
-    - Pastikan untuk menambahkan @yield('content') di bagian konten utama.
-    - Gunakan @stack('styles') dan @stack('scripts') untuk menambahkan style dan script khusus per halaman. 
