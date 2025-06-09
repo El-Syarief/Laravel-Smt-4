@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()//METHOD KHUSUS ADMIN UNTUK MENAMPILKAN DATA USER
+    public function index()
     {
         $users = User::all();
         return view('backend.user.index', compact('users'));
     }
 
-    public function create()//METHOD KHUSUS ADMIN UNTUK MENAMPILKAN FORM TAMBAH USER
+    public function create()
     {
         return view('backend.user.create');
     }
 
-    public function store(Request $request)//METHOD KHUSUS ADMIN UNTUK MENYIMPAN DATA USER BARU
+    public function store(Request $request)
     {
         $request->validate([
             'namaUsaha' => 'nullable|string|max:100',
@@ -49,17 +49,17 @@ class UserController extends Controller
         return redirect()->route('backend.user.index')->with('success', 'User berhasil ditambahkan');
     }
 
-    public function show($id)//METHOD ADMIN DAN USER UNTUK MENAMPILKAN DETAIL PROFILE USER
+    public function show($id)
     {
         $user = User::findOrFail($id);
         return view('backend.user.show', compact('user'));
     }
 
-    public function edit($id)//METHOD ADMIN DAN USER UNTUK MENAMPILKAN FORM EDIT USER
+    public function edit($id)
     {
         $user = User::findOrFail($id);
 
-        // Batasi: hanya admin atau user yang edit dirinya sendiri
+        
         if (Auth::user()->idUser !== $user->idUser && Auth::user()->role !== 'admin') {
             abort(403);
         }
@@ -67,11 +67,11 @@ class UserController extends Controller
         return view('backend.user.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)//METHOD ADMIN DAN USER UNTUK MEMPERBARUI DATA USER
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
-        // Batasi: hanya admin atau user yang update dirinya sendiri
+        
         if (Auth::user()->idUser !== $user->idUser && Auth::user()->role !== 'admin') {
             abort(403);
         }
@@ -103,11 +103,11 @@ class UserController extends Controller
         return redirect()->route('backend.user.index')->with('success', 'User berhasil diperbarui');
     }
 
-    public function destroy($id)//METHOD ADMIN UNTUK MENGHAPUS USER
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
 
-        // Admin tidak boleh hapus dirinya sendiri
+        
         if (Auth::user()->idUser === $user->idUser) {
             return back()->with('error', 'Tidak dapat menghapus akun sendiri');
         }

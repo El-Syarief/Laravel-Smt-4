@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'user';
-    protected $primaryKey = 'idUser'; // <-- TAMBAHKAN BARIS INI
+    protected $primaryKey = 'idUser'; 
 
     /**
      * The attributes that are mass assignable.

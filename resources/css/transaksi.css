@@ -12,16 +12,11 @@
     background-color: var(--background-content);
 }
 
-/* Menggunakan CSS Grid untuk layout yang lebih solid */
 .transaksi-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Kolom kiri 2 bagian, kolom kanan 1 bagian */
+    grid-template-columns: 2fr 1fr;
     gap: 30px;
     align-items: flex-start;
-}
-
-.product-selection {
-    /* Tidak perlu properti flex lagi */
 }
 
 .cart-section {
@@ -93,14 +88,13 @@
     height: 20px;
 }
 
-/* PERBAIKAN: Menambahkan max-height dan scroll */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 16px;
-    max-height: 70vh; /* Batas tinggi maksimal */
-    overflow-y: auto; /* Tambahkan scroll jika konten melebihi batas */
-    padding-right: 10px; /* Sedikit ruang untuk scrollbar */
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .product-card {
@@ -142,7 +136,6 @@
     padding: 24px;
 }
 
-/* PERBAIKAN: Mengatur header keranjang agar tidak tumpang tindih */
 .cart-header {
     display: flex;
     justify-content: space-between;
@@ -159,9 +152,8 @@
     margin: 0;
 }
 
-/* PERBAIKAN: Menambahkan max-height dan scroll untuk item keranjang */
 #cart-items-container {
-    max-height: 250px; /* Sesuaikan tinggi sesuai kebutuhan */
+    max-height: 250px;
     overflow-y: auto;
     padding-right: 10px;
 }

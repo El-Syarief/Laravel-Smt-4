@@ -1,0 +1,161 @@
+/* =================================
+   Variabel Warna & Layout Utama
+   ================================= */
+:root {
+    --primary-blue: #2d78db;
+    --background-content: #f4f7fa;
+    --card-background: #ffffff;
+    --text-dark: #333333;
+    --text-light: #667085;
+    --border-color: #eaecf0;
+}
+
+/* =================================
+   Gaya untuk Navigasi Tab
+   ================================= */
+.tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+.tabs a {
+    padding: 8px 4px 16px 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+.tabs a.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+}
+
+/* =================================
+   Gaya untuk Halaman Laporan per Bulan
+   ================================= */
+.report-list .report-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--card-background);
+    padding: 16px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+.report-item .info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+.report-item .info p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 0;
+}
+.report-item .info p span {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+.report-item .actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.report-item .actions .download-icon {
+    color: var(--text-light);
+    cursor: pointer;
+}
+.report-item .actions .btn-detail {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* =================================
+   Gaya untuk Halaman Input Beban
+   ================================= */
+.beban-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.beban-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.beban-list-item:last-child {
+    border-bottom: none;
+}
+.beban-list-item .beban-info {
+    flex-grow: 1;
+}
+.beban-list-item .beban-kanan {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+}
+.beban-list-item .beban-kanan strong {
+    min-width: 120px;
+    text-align: right;
+    font-weight: 600;
+}
+.beban-list-item .actions {
+    display: flex;
+    gap: 16px;
+    color: var(--text-light);
+}
+.beban-list-item .actions svg {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.beban-list-item .actions svg:hover {
+    color: var(--primary-blue);
+}
+
+/* =================================
+   Gaya Umum untuk Form
+   ================================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.form-group input {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #344054;
+    padding: 12px 20px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+}

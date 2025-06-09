@@ -24,7 +24,7 @@
                 <a href="{{ route('backend.beranda') }}" class="{{ request()->routeIs('backend.beranda') ? 'active' : '' }}">Home</a>
                 <a href="{{ route('backend.transaksi.index')}}" class="{ request()->routeIs('backend.transaksi.index') ? 'active' : ''}}">Transaksi</a>
                 <a href="{{ route('backend.barang.index') }}" class="{{ request()->routeIs('backend.barang.index') ? 'active' : '' }}">Stok</a>
-                <a href="#">Cetak Laba</a>
+                <a href="{{ route('backend.laporan.index') }}" class="{{ request()->routeIs('backend.laporan.index') ? 'active' : '' }}">Cetak Laba</a>
             </nav>
             <div class="user-section">
                 
@@ -55,5 +55,7 @@
     </div>
     {{-- Untuk tambahan script jika ada halaman yg butuh JS khusus --}}
     @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
