@@ -12,6 +12,8 @@ export default defineConfig({
                 "resources/css/manajemen-stok.css",
                 "resources/css/laporan.css",
                 "resources/css/dashboard.css",
+                "resources/css/profile.css", // Ditambahkan
+                "resources/css/history.css", // Ditambahkan
                 "resources/js/app.js",
             ],
             refresh: true,

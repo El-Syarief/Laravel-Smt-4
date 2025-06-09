@@ -12,9 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Barang::where('idUser', Auth::user()->idUser)->get();
+        $query = Barang::where('idUser', Auth::user()->idUser);
+        if ($request->filled('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('namaBrg', 'like', "%{$searchTerm}%")
+                  ->orWhere('kodeBrg', 'like', "%{$searchTerm}%");
+            });
+        }
+        $products = $query->get();
 
         $lastTransaction = Transaksi::latest('idTransaksi')->first();
 

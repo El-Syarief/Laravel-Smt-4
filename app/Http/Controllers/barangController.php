@@ -7,17 +7,36 @@ use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Kategori;
+
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barang = Barang::where('idUser', Auth::user()->idUser)->paginate(10);
-        return view('backend.v_barang.index', compact('barang'));
+        $kategori = Kategori::all();
+
+        $query = Barang::where('idUser',Auth::user()->idUser);
+
+        if ($request->filled('id_kategori')){
+            $query->where('idKategori', $request->id_kategori);
+        }
+
+        if($request->filled('search')){
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm){
+                $q->where('namaBrg', 'like', "%{$searchTerm}%")
+                ->orWhere('kodeBrg', 'like', "%{$searchTerm}%");
+            });
+        }
+
+        $barang = $query->with('kategori')->paginate(10)->withQueryString();
+        return view('backend.v_barang.index', compact('barang','kategori'));
     }
 
     public function create()
     {
+        $kategori = Kategori::all();
         return view('backend.v_barang.create');
     }
 
@@ -30,13 +49,25 @@ class BarangController extends Controller
             'stokBrg' => 'required|integer|min:1',
             'hrgModal' => 'required|numeric|min:0',
             'hrgJual' => 'required|numeric|min:0',
+            'nama_kategori' => 'nullable|string|max:100',
         ]);
+
+        $idKategori = null;
+        if ($request->filled('nama_kategori')) {
+            $kategori = Kategori::firstOrCreate(
+                ['nama_kategori' => $request->nama_kategori]
+            );
+            $idKategori = $kategori->idKategori;
+        }
+
+
 
         $path = $request->file('fotoBrg')->store('products', 'public');
 
         $barang = Barang::create([
             'idUser' => Auth::user()->idUser,
             'fotoBrg' => $path,
+            'idKategori' => $idKategori,
             'namaBrg' => $request->namaBrg,
             'kodeBrg' => $request->kodeBrg,
             'stokBrg' => $request->stokBrg,
@@ -58,7 +89,7 @@ class BarangController extends Controller
 
     public function edit($id)
     {
-        $barang = Barang::where('idUser', Auth::user()->idUser)->findOrFail($id);
+        $barang = Barang::with('kategori')->where('idUser', Auth::user()->idUser)->findOrFail($id);
         return view('backend.v_barang.edit', compact('barang'));
     }
 
@@ -74,6 +105,14 @@ class BarangController extends Controller
             'hrgModal' => 'nullable|numeric',
             'hrgJual' => 'nullable|numeric',
         ]);
+
+        $idKategori = $barang->idKategori;
+        if($request->filled('nama_kategori')){
+            $kategori = Kategori::firstOrCreate(
+                ['nama_kategori' => $request->nama_kategori]
+            );
+            $idKategori = $kategori->idKategori;
+        }
         
         $path = $barang->fotoBrg;
         if ($request->hasFile('fotoBrg')) {
@@ -90,6 +129,7 @@ class BarangController extends Controller
             'stokBrg' => $request->stokBrg,
             'hrgModal' => $request->hrgModal,
             'hrgJual' => $request->hrgJual,
+            'idKategori' => $idKategori,
         ]);
 
         return redirect()->route('backend.barang.index')->with('success', 'Barang berhasil diperbarui');

@@ -1,120 +1,7 @@
 @extends('backend.v_layouts.app')
 @section('title', 'Dasbor')
 @push('styles')
-    @vite('resources/css/manajemen-stok.css')
-    <style>
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-        }
-        .summary-card { background-color: var(--card-background); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
-        .summary-card .title { font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
-        .summary-card .amount { font-size: 32px; font-weight: 800; color: var(--text-dark); }
-        .summary-card .amount.profit { color: #027A48; }
-        .summary-card .amount.expense { color: #B42318; }
-        
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 10px; }
-        .chart-header .filter-dropdown select { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; background-color: white; }
-        
-        .chart-container {
-            margin-top: 30px;
-            background-color: var(--card-background);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-
-            
-            position: relative;
-            height: 50vh;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 16px;
-            margin-bottom: 30px;
-        }
-        .quick-action-btn {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background-color: var(--card-background);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.2s ease-in-out;
-        }
-        .quick-action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-        }
-        .quick-action-btn .icon-wrapper {
-            background-color: #EBF5FF;
-            color: #2D78DB;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quick-action-btn .icon-wrapper svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-
-
-.dashboard-main-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
-    margin-top: 30px;
-    align-items: flex-start;
-}
-
-        
-        .activity-feed {
-            background-color: var(--card-background);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        .activity-feed h3 {
-            font-size: 18px;
-            margin: 0 0 16px 0;
-        }
-        .activity-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .activity-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 14px;
-        }
-        .activity-list li:last-child {
-            border-bottom: none;
-        }
-        .activity-list .description {
-            color: var(--text-dark);
-        }
-        .activity-list .amount {
-            font-weight: 600;
-            white-space: nowrap;
-            padding-left: 16px;
-        }
-    </style>
+    @vite(['resources/css/manajemen-stok.css', 'resources/css/dashboard.css'])
 @endpush
 
 @section('content')
@@ -193,6 +80,7 @@
             <canvas id="financialChart"></canvas>
         </div>
 
+        {{-- Kolom Kanan: Aktivitas --}}
         <div class="activity-feed">
             <h3>Aktivitas Penjualan Terakhir</h3>
             <ul class="activity-list">
@@ -218,10 +106,6 @@
                 @endforelse
             </ul>
         </div>
-    </div>
-</div>
-    <div class="chart-container">
-        <canvas id="financialChart"></canvas>
     </div>
 </div>
 @endsection
@@ -260,6 +144,7 @@
                     animation: {
                         duration: 0
                     },
+                    maintainAspectRatio: false,
                     responsive: true,
                     scales: {
                         y: {

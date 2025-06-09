@@ -3,13 +3,7 @@
 @section('title', 'Laporan Keuangan')
 
 @push('styles')
-    @vite('resources/css/manajemen-stok.css')
-    <style>
-        .money-in { color: #027A48; font-weight: 600; }
-        .money-out { color: #B42318; font-weight: 600; }
-        .card-header { padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
-        .card-header h2 { font-size: 20px; margin: 0; }
-    </style>
+    @vite(['resources/css/manajemen-stok.css', 'resources/css/history.css'])
 @endpush
 
 @section('content')

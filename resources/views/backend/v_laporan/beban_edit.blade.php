@@ -1,8 +1,7 @@
 @extends('backend.v_layouts.app')
 @section('title', 'Edit Beban')
 @push('styles')
-    @vite('resources/css/manajemen-stok.css')
-    @vite('resources/css/laporan.css')
+    @vite(['resources/css/manajemen-stok.css', 'resources/css/laporan.css'])
 @endpush
 
 @section('content')
@@ -35,5 +34,4 @@
         </form>
     </div>
 </div>
-<style>.form-group{display:flex;flex-direction:column}.form-group label{margin-bottom:8px;font-weight:600;font-size:14px}.form-group input{padding:10px 12px;border:1px solid var(--border-color);border-radius:8px;font-size:16px}.form-footer{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}</style>
 @endsection

@@ -32,9 +32,9 @@
     <div class="right">
         <form class="form-container" method="POST" action="{{ route('login') }}">
             @csrf
-            @if(session('error'))
-                <div style="background-color: #ffcccc; border: 1px solid red; color: red; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
-                    {{ session('error') }}
+            @if($errors->any())
+                <div style="background-color: #ffcccc; border: 1px solid #B42318; color: #B42318; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; text-align: center;">
+                    {{ $errors->first('email') }}
                 </div>
             @endif
             <div class="form-group">
@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label for="password">Masukkan Password</label>
                 <input type="password" name="password" id="password" required placeholder="Password">
-                <div class="link"><a href="#">Lupa Password?</a></div>
+                <div class="link"><a href="{{ route('password.request') }}">Lupa Password?</a></div>
             </div>
             <button type="submit" class="btn-action">Masuk</button>
         </form>

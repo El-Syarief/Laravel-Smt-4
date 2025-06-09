@@ -13,6 +13,7 @@ class Barang extends Model
     protected $primaryKey = 'idBrg';
     protected $fillable = [
         'idUser',
+        'idKategori',
         'fotoBrg',
         'namaBrg',
         'kodeBrg',
@@ -23,6 +24,10 @@ class Barang extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'idUser', 'idUser');
+    }
+
+    public function kategori() {
+        return $this->belongsTo(Kategori::class, 'idKategori', 'idKategori');
     }
 
     public function transaksiDetails() {

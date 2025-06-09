@@ -8,6 +8,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 /*
@@ -27,6 +28,11 @@ Route::post('backend/login', [LoginController::class, 'authenticateBackend']);
 Route::get('backend/register', [LoginController::class, 'registerBackend'])->name('backend.register');
 Route::post('backend/register', [LoginController::class, 'registerBackend']);
 Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
+
+Route::get('lupa-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('lupa-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
 
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 Route::resource('backend/barang', BarangController::class, ['as' => 'backend'])->middleware('auth');

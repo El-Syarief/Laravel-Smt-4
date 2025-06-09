@@ -13,12 +13,69 @@
         <form action="{{ route('backend.barang.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-body">
-                <div class="form-group"><label for="namaBrg">Nama Produk</label><input type="text" name="namaBrg" id="namaBrg" value="{{ old('namaBrg') }}" required>@error('namaBrg') <div class="error-message">{{ $message }}</div> @enderror</div>
-                <div class="form-group"><label for="kodeBrg">Kode Produk</label><input type="text" name="kodeBrg" id="kodeBrg" value="{{ old('kodeBrg') }}" required>@error('kodeBrg') <div class="error-message">{{ $message }}</div> @enderror</div>
-                <div class="form-group"><label for="stokBrg">Stok Awal</label><input type="number" name="stokBrg" id="stokBrg" value="{{ old('stokBrg', 0) }}">@error('stokBrg') <div class="error-message">{{ $message }}</div> @enderror</div>
-                <div class="form-group"><label for="hrgModal">Harga Modal (Rp)</label><input type="number" name="hrgModal" id="hrgModal" value="{{ old('hrgModal') }}">@error('hrgModal') <div class="error-message">{{ $message }}</div> @enderror</div>
-                <div class="form-group"><label for="hrgJual">Harga Jual (Rp)</label><input type="number" name="hrgJual" id="hrgJual" value="{{ old('hrgJual') }}" required>@error('hrgJual') <div class="error-message">{{ $message }}</div> @enderror</div>
-                <div class="form-group"><label for="fotoBrg">Foto Produk</label><input type="file" name="fotoBrg" id="fotoBrg" required>@error('fotoBrg') <div class="error-message">{{ $message }}</div> @enderror</div>
+                <div class="form-group">
+                    <label for="namaBrg">
+                        Nama Produk
+                    </label>
+                    <input type="text" name="namaBrg" id="namaBrg" value="{{ old('namaBrg') }}" required>@error('namaBrg') 
+                    <div class="error-message">
+                        {{ $message }}
+                    </div> 
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="kodeBrg">
+                        Kode Produk
+                    </label>
+                    <input type="text" name="kodeBrg" id="kodeBrg" value="{{ old('kodeBrg') }}" required>
+                        @error('kodeBrg') 
+                    <div class="error-message">
+                        {{ $message }}
+                    </div> 
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="nama_kategori">Kategori</label>
+                    <input type="text" name="nama_kategori" id="nama_kategori" value="{{ old('nama_kategori') }}" placeholder="Ketik untuk menambah kategori baru">
+                    @error('nama_kategori') <div class="error-message">{{ $message }}</div> @enderror
+                </div>
+            
+                <div class="form-group">
+                    <label for="stokBrg">
+                        Stok Awal
+                    </label>
+                    <input type="number" name="stokBrg" id="stokBrg" value="{{ old('stokBrg', 0) }}">
+                    @error('stokBrg')
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="hrgModal">
+                        Harga Modal (Rp)
+                    </label>
+                    <input type="number" name="hrgModal" id="hrgModal" value="{{ old('hrgModal') }}">@error('hrgModal') <div class="error-message">
+                        {{ $message }}
+                    </div> 
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="hrgJual">Harga Jual (Rp)</label><input type="number" name="hrgJual" id="hrgJual" value="{{ old('hrgJual') }}" required>
+                        @error('hrgJual') 
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="fotoBrg">Foto Produk</label><input type="file" name="fotoBrg" id="fotoBrg" required>
+                        @error('fotoBrg') 
+                    <div class="error-message">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
             </div>
             <div class="form-footer">
                 <a href="{{ route('backend.barang.index') }}" class="btn-secondary">Batal</a>

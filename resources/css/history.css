@@ -1,0 +1,42 @@
+.money-in {
+    color: #027a48;
+    font-weight: 600;
+}
+.money-out {
+    color: #b42318;
+    font-weight: 600;
+}
+.card-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+.card-header h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.summary-section {
+    max-width: 400px;
+    margin-left: auto;
+    margin-top: 24px;
+}
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.summary-item.total {
+    font-weight: 800;
+    font-size: 16px;
+}
+.summary-item.laba {
+    font-weight: 600;
+    color: #027a48;
+}
+.summary-section hr {
+    border: none;
+    border-top: 1px solid #eaecf0;
+    margin: 16px 0;
+}

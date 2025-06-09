@@ -3,40 +3,6 @@
 @push('styles')
     @vite('resources/css/manajemen-stok.css')
     @vite('resources/css/laporan.css')
-    <style>
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 30px;
-        }
-        .summary-card {
-            background-color: var(--card-background);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        .summary-card .title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-        .summary-card .amount {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .summary-card .amount.profit { color: #027A48; }
-        .summary-card .amount.expense { color: #B42318; }
-
-        .details-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: flex-start;
-        }
-    </style>
 @endpush
 
 @section('content')

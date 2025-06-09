@@ -1,9 +1,8 @@
 :root {
     --primary-blue: #2d78db;
-    --background-content: #f4f7fa;
+    --background-content: #0000;
     --card-background: #ffffff;
     --text-dark: #333333;
-    --text-light: #667085;
     --border-color: #eaecf0;
 }
 
@@ -72,7 +71,7 @@
     margin-bottom: 20px;
 }
 .search-bar input {
-    width: 100%;
+    width: 80%;
     padding: 10px 16px 10px 40px;
     border: 1px solid var(--border-color);
     border-radius: 8px;

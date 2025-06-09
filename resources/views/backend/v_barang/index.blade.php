@@ -18,13 +18,27 @@
     </div>
 
     <div class="content-card">
-        <div class="filter-section">
-            <div class="search-bar">
-                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" /></svg></span>
-                <input type="text" placeholder="Cari Produk...">
+        <form action="{{route('backend.barang.index')}}" method="GET" id="filter-form">
+
+            <div class="filter-section">
+                <div class="search-bar">
+                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" /></svg></span>
+                    <input type="text" name="search" placeholder="Cari Produk" value="{{request('search')}}">
+                </div>
+                <div class="filter-dropdown">
+                        <select name="id_kategori" onchange="document.getElementById('filter-form').submit()">
+                            <option value="">Semua Kategori</option>
+                            @foreach ($kategori as $kat)
+                                <option value="{{ $kat->idKategori }}" {{ request('id_kategori') == $kat->idKategori ? 'selected' : '' }}>
+                                    {{ $kat->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                </div>
+                <button type="submit" class="btn-add" style="padding:10px 18px;">Cari</button>
+    
             </div>
-            <div class="filter-dropdown"><select><option>Semua Kategori</option></select></div>
-        </div>
+        </form>
 
         <table class="stok-table">
             <thead>
@@ -46,6 +60,9 @@
                         </div>
                     </td>
                     <td>{{ $item->kodeBrg }}</td>
+                    <td>
+                        {{ $item->kategori->nama_kategori ?? 'Tanpa Kategori' }}
+                    </td>
                     <td>{{ $item->stokBrg }}</td>
                     <td>Rp{{ number_format($item->hrgJual, 0, ',', '.') }}</td>
                     <td>
@@ -54,7 +71,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="5" style="text-align: center; padding: 20px;">Anda belum memiliki produk.</td></tr>
+                <tr><td colspan="6" style="text-align: center; padding: 20px;">Produk tidak ditemukan.</td></tr>
                 @endforelse
             </tbody>
         </table>

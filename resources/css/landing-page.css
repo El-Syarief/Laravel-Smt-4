@@ -1,11 +1,26 @@
 :root {
     --primary-dark: #2a3f4b;
-    --background-main: #e8eae8;
+    --background-content: #ffffff;
     --background-card: #ffffff;
     --primary-blue: #2d78db;
     --text-dark: #333333;
     --text-light: #ffffff;
 }
+
+/* Sticky Footer CSS */
+html,
+body {
+    height: 100%;
+}
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main-content {
+    flex-grow: 1;
+}
+/* End Sticky Footer CSS */
 
 body {
     font-family: "Inter", sans-serif;
