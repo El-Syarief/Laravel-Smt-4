@@ -7,18 +7,14 @@
     --text-light: #ffffff;
 }
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     font-family: "Inter", sans-serif;
     margin: 0;
+    padding: 0;
+    background-color: var(--background-main);
     color: var(--text-dark);
 }
 
-/* Header & Navigation */
 header {
     background-color: var(--primary-dark);
     color: var(--text-light);
@@ -26,16 +22,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main-content {
-    flex: 1;
 }
 
 .logo {
@@ -76,19 +62,6 @@ nav a:hover {
     font-weight: 500;
 }
 
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-profile svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--text-light);
-}
-
-/* Hero Section */
 .hero {
     display: flex;
     justify-content: space-between;
@@ -132,7 +105,6 @@ nav a:hover {
     height: auto;
 }
 
-/* Features Section */
 .features {
     text-align: center;
     padding: 60px 50px;
@@ -166,15 +138,21 @@ nav a:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.feature .icon-placeholder {
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    border-radius: 10px;
-    background-color: #ebf0f3;
-    margin: 0 auto 20px auto;
-    color: #888;
-    font-weight: 500;
+.feature .feature-icon {
+    background-color: #ebf5ff;
+    color: #2d78db;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+}
+
+.feature .feature-icon svg {
+    width: 32px;
+    height: 32px;
 }
 
 .feature h3 {
@@ -189,7 +167,6 @@ nav a:hover {
     color: #666;
 }
 
-/* Footer */
 footer {
     background-color: var(--primary-dark);
     color: var(--text-light);

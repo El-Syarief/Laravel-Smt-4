@@ -1,0 +1,79 @@
+body {
+    background-color: #7d8c89;
+}
+
+.register-container {
+    display: flex;
+    min-height: calc(100vh - 75px); /* Tinggi layar dikurangi tinggi header */
+}
+
+.left,
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    flex-direction: column;
+    text-align: center;
+}
+
+.left img {
+    width: 200px;
+}
+
+.right {
+    color: #111;
+}
+
+.form-container {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #29464f;
+    color: white;
+}

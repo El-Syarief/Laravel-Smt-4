@@ -7,10 +7,11 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/css/landing-page.css",
+                "resources/css/login.css",
+                "resources/css/register.css",
                 "resources/css/manajemen-stok.css",
-                "reources/css/transaksi.css",
                 "resources/css/laporan.css",
-
+                "resources/css/dashboard.css",
                 "resources/js/app.js",
             ],
             refresh: true,

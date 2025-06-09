@@ -6,6 +6,8 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransaksiController;
 
 
 /*
@@ -44,3 +46,6 @@ Route::put('backend/laporan-laba/beban/{pengeluaran}', [LaporanController::class
 Route::delete('backend/laporan-laba/beban/{pengeluaran}', [LaporanController::class, 'destroyBeban'])->name('backend.laporan.beban.destroy')->middleware('auth');
 Route::get('backend/laporan-laba/{tahun}/{bulan}', [LaporanController::class, 'DetailLaporan'])->name('backend.laporan.show.monthly')->middleware('auth');
 Route::get('backend/laporan-laba/{tahun}/{bulan}/download', [LaporanController::class, 'downloadPDF'])->name('backend.laporan.download')->middleware('auth');
+
+Route::get('backend/profile', [ProfileController::class, 'index'])->name('backend.profile.index')->middleware('auth');
+Route::put('backend/profile', [ProfileController::class, 'update'])->name('backend.profile.update')->middleware('auth');

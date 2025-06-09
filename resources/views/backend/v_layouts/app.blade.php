@@ -27,13 +27,15 @@
                 <a href="{{ route('backend.laporan.index') }}" class="{{ request()->routeIs('backend.laporan.index') ? 'active' : '' }}">Cetak Laba</a>
             </nav>
             <div class="user-section">
-                
                 @auth
-                    <div class="user-profile">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.92V18h11v-1.58C17.5,14.23,15.04,12.5,12,12.5z M12,2C9.24,2,7,4.24,7,7s2.24,5,5,5s5-2.24,5-5S14.76,2,12,2z"/></svg>
+                    <a href="{{ route('backend.profile.index') }}" class="user-profile" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 10px;">
+                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                         <span>{{ Auth::user()->namaUsaha }}</span>
-                    </div>
-                    
+                    </a>
+                    <form action="{{ route('backend.logout') }}" method="POST" style="margin: 0;">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; color: white; cursor: pointer; font-weight: 500; padding: 5px 10px; font-size: 16px;">Logout</button>
+                    </form>
                 @endauth
             </div>
         </header>
