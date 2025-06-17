@@ -58,11 +58,21 @@
                     <h4 class="full-width">Ubah Password</h4>
                     <div class="form-group">
                         <label for="password">Password Baru</label>
-                        <input type="password" name="password" id="password" placeholder="Kosongkan jika tidak ingin diubah">
+                        <input type="password" name="password" id="password" 
+                        placeholder="Kosongkan jika tidak ingin diubah" 
+                        class="@error('password') is-invalid @enderror">
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Konfirmasi Password Baru</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Ulangi password baru">
+                        <input type="password" name="password_confirmation" id="password_confirmation" 
+                        placeholder="Ulangi password baru"
+                        class="@error('password') is-invalid @enderror">
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-footer">

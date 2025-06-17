@@ -35,9 +35,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="nama_kategori">Kategori</label>
-                    <input type="text" name="nama_kategori" id="nama_kategori" value="{{ old('nama_kategori') }}" placeholder="Ketik untuk menambah kategori baru">
-                    @error('nama_kategori') <div class="error-message">{{ $message }}</div> @enderror
+                    <label for="namaKategori">Kategori</label>
+                    <input type="text" name="namaKategori" id="namaKategori" value="{{ old('namaKategori') }}" placeholder="Ketik untuk menambah kategori baru">
+                    @error('namaKategori') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
             
                 <div class="form-group">

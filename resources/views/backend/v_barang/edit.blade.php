@@ -19,8 +19,8 @@
                 <div class="form-group"><label for="kodeBrg">Kode Produk</label><input type="text" name="kodeBrg" id="kodeBrg" value="{{ old('kodeBrg', $barang->kodeBrg) }}" required>@error('kodeBrg') <div class="error-message">{{ $message }}</div> @enderror</div>
                 
                 <div class="form-group">
-                    <label for="nama_kategori">Kategori</label>
-                    <input type="text" name="nama_kategori" id="nama_kategori" value="{{ old('nama_kategori', $barang->kategori->nama_kategori ?? '') }}" placeholder="Ketik untuk mengubah atau menambah kategori">
+                    <label for="namaKategori">Kategori</label>
+                    <input type="text" name="namaKategori" id="namaKategori" value="{{ old('namaKategori', $barang->kategori->namaKategori ?? '') }}" placeholder="Ketik untuk mengubah atau menambah kategori">
                 </div>
                 
                 <div class="form-group"><label for="stokBrg">Stok</label><input type="number" name="stokBrg" id="stokBrg" value="{{ old('stokBrg', $barang->stokBrg) }}">@error('stokBrg') <div class="error-message">{{ $message }}</div> @enderror</div>

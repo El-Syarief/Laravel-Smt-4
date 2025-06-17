@@ -30,7 +30,7 @@
                             <option value="">Semua Kategori</option>
                             @foreach ($kategori as $kat)
                                 <option value="{{ $kat->idKategori }}" {{ request('id_kategori') == $kat->idKategori ? 'selected' : '' }}>
-                                    {{ $kat->nama_kategori }}
+                                    {{ $kat->namaKategori }}
                                 </option>
                             @endforeach
                         </select>
@@ -61,13 +61,15 @@
                     </td>
                     <td>{{ $item->kodeBrg }}</td>
                     <td>
-                        {{ $item->kategori->nama_kategori ?? 'Tanpa Kategori' }}
+                        {{ $item->kategori->namaKategori ?? 'Tanpa Kategori' }}
                     </td>
                     <td>{{ $item->stokBrg }}</td>
                     <td>Rp{{ number_format($item->hrgJual, 0, ',', '.') }}</td>
                     <td>
-                        <a href="{{ route('backend.barang.edit', $item->idBrg) }}" class="action-link">Edit</a>
-                         <a href="{{ route('backend.barang.add-stock-form', $item->idBrg) }}" class="action-link">Tambah Stok</a>
+                        <a href="{{ route('backend.barang.edit', $item->idBrg) }}" class="btn-add" 
+                        style="padding:10px 18px;"><i data-feather="edit-3" style="width: 20px; height: 20px;"></i>Edit</a>
+                        <a href="{{ route('backend.barang.add-stock-form', $item->idBrg) }}" class="btn-add" 
+                        style="padding:10px 18px; margin-left: 0.5rem;"><i data-feather="plus-circle" style="width: 20px; height: 20px;"></i>Tambah Stok</a>
                     </td>
                 </tr>
                 @empty
@@ -96,3 +98,14 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+  <!-- 1) script CDN Feather -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <!-- 2) replace ikon setelah DOM loaded -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace()
+    })
+  </script>
+@endpush

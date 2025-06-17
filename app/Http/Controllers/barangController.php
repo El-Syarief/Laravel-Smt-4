@@ -42,6 +42,7 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'fotoBrg' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'namaBrg' => 'required|max:100',
@@ -49,13 +50,13 @@ class BarangController extends Controller
             'stokBrg' => 'required|integer|min:1',
             'hrgModal' => 'required|numeric|min:0',
             'hrgJual' => 'required|numeric|min:0',
-            'nama_kategori' => 'nullable|string|max:100',
+            'namaKategori' => 'nullable|string|max:100',
         ]);
 
         $idKategori = null;
-        if ($request->filled('nama_kategori')) {
+        if ($request->filled('namaKategori')) {
             $kategori = Kategori::firstOrCreate(
-                ['nama_kategori' => $request->nama_kategori]
+                ['namaKategori' => $request->namaKategori]
             );
             $idKategori = $kategori->idKategori;
         }
@@ -83,6 +84,8 @@ class BarangController extends Controller
             'jumlah' => $totalBiayaModal,
             'tanggal' => now(),
         ]);
+        // dd('selesai simpan');
+
 
         return redirect()->route('backend.barang.index')->with('success', 'Barang berhasil ditambahkan');
     }
@@ -107,9 +110,9 @@ class BarangController extends Controller
         ]);
 
         $idKategori = $barang->idKategori;
-        if($request->filled('nama_kategori')){
+        if($request->filled('namaKategori')){
             $kategori = Kategori::firstOrCreate(
-                ['nama_kategori' => $request->nama_kategori]
+                ['namaKategori' => $request->namaKategori]
             );
             $idKategori = $kategori->idKategori;
         }

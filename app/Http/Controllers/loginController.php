@@ -69,7 +69,7 @@ class loginController extends Controller
                 $validateData['status'] = 'aktif';
                 $validateData['role'] = 'user';
                 $validateData['alamat'] = 'contoh alamat';
-                $validateData['foto'] = 'default-foto.png';
+                $validateData['foto'] = '';
                 $validateData['qrCode'] = 'www.example.com/qr-code.png';
                 $validateData['created_at'] = now();
                 $validateData['updated_at'] = now();

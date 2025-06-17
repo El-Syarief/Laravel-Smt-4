@@ -29,7 +29,12 @@
             <div class="user-section">
                 @auth
                     <a href="{{ route('backend.profile.index') }}" class="user-profile" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 10px;">
+                        @if (Auth::user()->foto)
                         <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                        @else
+                        <img src="{{ asset('storage/avatars/profile-default.png') }}"
+                            alt="Foto Profil" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                        @endif
                         <span>{{ Auth::user()->namaUsaha }}</span>
                     </a>
                     <form action="{{ route('backend.logout') }}" method="POST" style="margin: 0;">

@@ -27,7 +27,10 @@ class ProfileController extends Controller
             'alamat' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'password' => 'nullable|min:6|confirmed',
+        ], [
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
+
 
         $userData = $request->only(['namaUsaha', 'email', 'noTelp', 'alamat']);
 
