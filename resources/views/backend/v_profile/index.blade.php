@@ -21,7 +21,19 @@
 
     <div class="profile-container">
         <div class="profile-picture-card">
-            <img src="{{ asset('storage/' . $user->foto) }}" alt="Foto Profil" class="profile-img">
+            <!-- <img src="{{ asset('storage/' . $user->foto) }}" alt="Foto Profil" class="profile-img"> -->
+             @if (Auth::user()->foto)
+                <img
+                src="{{ asset('storage/' . Auth::user()->foto) }}"
+                alt="Foto Profil"
+                class="profile-img">
+            @else
+                <img
+                src="{{ asset('storage/avatars/profile-default.png') }}"
+                alt="Foto Profil Default"
+                class="profile-img">
+            @endif
+
             <h3>{{ $user->namaUsaha }}</h3>
             <p>{{ $user->email }}</p>
         </div>
