@@ -1,104 +1,151 @@
-# SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
+# <img src="public/backend/images/simanis-doang.png" alt="SIMANIS Logo" width="40" valign="middle"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
 
-Aplikasi SIMANIS adalah sistem manajemen stok barang, pencatatan transaksi, dan pelaporan keuangan berbasis web yang dikembangkan menggunakan framework Laravel dan Vite sebagai aset bundler untuk memenuhi tugas atau proyek kuliah Semester 4.
+[![Build Status](https://img.shields.io/github/workflow/status/El-Syarief/laravel-smt-4/CI?style=flat-square)](https://github.com/El-Syarief/laravel-smt-4/actions)
+[![PHP Version](https://img.shields.io/badge/php-%22%23%2F%3E%2F8.1-%22%23%2F%3E%2F-777BB4.svg?style=flat-square)](https://php.net/)
+[![Built with Laravel](https://img.shields.io/badge/built%20with-laravel-%22%23%2F%3E%2FFF2D20.svg?style=flat-square)](https://laravel.com/)
+[![License](https://img.shields.io/github/license/El-Syarief/laravel-smt-4?style=flat-square)](https://github.com/El-Syarief/laravel-smt-4/blob/main/LICENSE)
 
-## Fitur Utama
+<br/>
 
-Sistem ini dilengkapi dengan berbagai modul backend dan tampilan kustom untuk mempermudah operasional toko atau manajemen inventaris:
+Aplikasi **SIMANIS** adalah sistem manajemen stok barang, pencatatan transaksi, dan pelaporan keuangan berbasis web yang dikembangkan menggunakan framework Laravel dan Vite sebagai aset bundler untuk memenuhi tugas atau proyek kuliah Semester 4.
 
-*   **Autentikasi Pengguna**: Fitur registrasi, login, sistem proteksi session, serta pengaturan lupa kata sandi.
-*   **Dasbor Interaktif**: Halaman beranda khusus backend untuk memantau ringkasan data inventaris dan penjualan secara cepat.
-*   **Manajemen Kategori & Barang**: Fitur untuk menambah, mengubah, melihat daftar barang, serta menambah jumlah stok barang secara dinamis.
-*   **Pencatatan Transaksi**: Fitur transaksi penjualan/pembelian lengkap dengan riwayat (*history*) transaksi mendetail untuk melacak performa toko.
-*   **Manajemen Beban & Pengeluaran**: Pencatatan pengeluaran operasional di luar transaksi barang untuk kalkulasi neraca keuangan yang akurat.
-*   **Laporan Keuangan & Ekspor PDF**: Pembuatan laporan berkala yang dapat diunduh langsung dalam format file PDF menggunakan template cetak kustom.
-*   **Manajemen Profil**: Halaman khusus bagi pengguna yang sedang masuk untuk memperbarui informasi akun mereka sendiri.
+---
 
-## Teknologi yang Digunakan
+## 🚀 Fitur Utama
 
-*   **Framework PHP**: Laravel (v10 / v11)
-*   **Build Tool / Asset Bundler**: Vite (untuk efisiensi kompilasi CSS dan JavaScript)
-*   **Database Server**: MySQL / MariaDB
-*   **Bahasa Pemrograman Backend**: PHP, JavaScript
-*   **Bahasa Pemrograman Frontend**: Blade (Laravel Template Engine), HTML5, CSS3 kustom
+Sistem ini dirancang dengan modul backend lengkap dan tampilan kustom yang modern untuk mempermudah operasional toko atau manajemen inventaris Anda:
 
-## Panduan Instalasi Lokal
+| Icon | Fitur | Deskripsi |
+| :--- | :--- | :--- |
+| 🔑 | **Autentikasi Pengguna** | Registrasi, login aman, sistem proteksi session, dan fitur lupa kata sandi. |
+| 📊 | **Dasbor Interaktif** | Halaman utama khusus backend untuk memantau ringkasan data inventaris dan penjualan secara *real-time*. |
+| 📦 | **Manajemen Stok** | CRUD (Create, Read, Update, Delete) Kategori & Barang, serta fitur penambahan stok barang secara dinamis. |
+| 💳 | **Pencatatan Transaksi** | Fitur transaksi penjualan/pembelian lengkap dengan riwayat (*history*) transaksi mendetail. |
+| 💸 | **Beban & Pengeluaran** | Pencatatan pengeluaran operasional di luar transaksi barang untuk kalkulasi neraca keuangan yang akurat. |
+| 📄 | **Laporan & Ekspor PDF** | Pembuatan laporan berkala yang dapat diunduh langsung dalam format file PDF menggunakan template cetak kustom. |
+| 👤 | **Manajemen Profil** | Halaman khusus bagi pengguna untuk memperbarui informasi akun mereka sendiri. |
 
-Ikuti langkah-langkah di bawah ini untuk memasang dan menjalankan aplikasi ini di komputer Anda:
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+Aplikasi ini dibangun menggunakan tumpukan teknologi modern:
+
+| Teknologi | Detail | Logo |
+| :--- | :--- | :--- |
+| Framework PHP | Laravel (v10 / v11) | [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com/) |
+| Build Tool / Aset Bundler | Vite | [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/) |
+| Database Server | MySQL / MariaDB | [![MySQL](https://img.shields.io/badge/MySQL-00758F?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/) [![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariadb&logoColor=white)](https://mariadb.org/) |
+| Backend Language | PHP, JavaScript | [![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net/) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |
+| Frontend Language | Blade, HTML5, CSS3 kustom | [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/CSS) |
+
+---
+
+## ⚙️ Panduan Instalasi Lokal
+
+Ikuti langkah-langkah di bawah ini untuk memasang dan menjalankan aplikasi ini di komputer lokal Anda:
 
 ### 1. Prasyarat Sistem
 Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
-*   PHP (Minimal versi 8.1 atau versi terbaru)
-*   Composer
-*   Node.js & NPM
-*   Aplikasi Database Server (seperti XAMPP, Laragon, atau MySQL CLI)
+*   [**PHP**](https://php.net/) (Minimal versi 8.1 atau versi terbaru)
+*   [**Composer**](https://getcomposer.org/)
+*   [**Node.js & NPM**](https://nodejs.org/)
+*   [**Aplikasi Database Server**](https://www.mysql.com/) (seperti XAMPP, Laragon, atau MySQL CLI)
 
 ### 2. Langkah Pemasangan
 
-1. **Clone Proyek & Masuk ke Direktori**
+1.  **Clone** repositori ini ke komputer Anda dan masuk ke direktori proyek:
 ```bash
-   cd laravel-smt-4
-```
+    git clone [https://github.com/El-Syarief/laravel-smt-4.git](https://github.com/El-Syarief/laravel-smt-4.git)
+    cd laravel-smt-4
+   ```
 
-2. **Instal Dependensi Backend (Composer)**
+2.  **Instal** dependensi PHP menggunakan Composer:
 ```bash
-   composer install
+    composer install
+   ```
 
-3. **Instal Dependensi Frontend (NPM)**
+3.  **Instal** dependensi JavaScript menggunakan NPM:
 ```bash
-   npm install
-```
+    npm install
+   ```
 
-4. **Membuat File Konfigurasi .env Baru**
-   Buat file baru bernama .env di direktori utama proyek, lalu salin dan tempel konfigurasi dasar di bawah ini:
-   APP_NAME=Laravel
-   APP_ENV=local
-   APP_KEY=
-   APP_DEBUG=true
-   APP_URL=http://localhost
-
-   LOG_CHANNEL=stack
-   LOG_DEPRECATIONS_CHANNEL=null
-   LOG_LEVEL=debug
-
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=db_simanis
-   DB_USERNAME=root
-   DB_PASSWORD=
-
-   BROADCAST_DRIVER=log
-   CACHE_DRIVER=file
-   FILESYSTEM_DISK=local
-   QUEUE_CONNECTION=sync
-   SESSION_DRIVER=file
-   SESSION_LIFETIME=120
-
-5. **Generate Application Key**
-   Buat kunci enkripsi unik untuk aplikasi Anda dengan menjalankan perintah:
+4.  **Konfigurasi Environment**:
+    Buat file konfigurasi `.env` baru di direktori utama proyek, lalu salin dan tempel konfigurasi dasar di bawah ini. Sesuaikan kredensial database Anda jika diperlukan:
 ```bash
-   php artisan key:generate
-```
+    # Salin dan tempel ke file .env
+    APP_NAME=SIMANIS
+    APP_ENV=local
+    APP_KEY=
+    APP_DEBUG=true
+    APP_URL=http://localhost
 
-6. **Jalankan Migrasi & Data Seeder**
-   Kirimkan semua skema tabel dan isi data awal (seperti akun bawaan) ke dalam database Anda:
+    LOG_CHANNEL=stack
+    LOG_DEPRECATIONS_CHANNEL=null
+    LOG_LEVEL=debug
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=db_simanis
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+    BROADCAST_DRIVER=log
+    CACHE_DRIVER=file
+    FILESYSTEM_DISK=local
+    QUEUE_CONNECTION=sync
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
+   ```
+
+5.  **Generate** kunci enkripsi aplikasi:
 ```bash
-   php artisan migrate --seed
-```
+    php artisan key:generate
+   ```
 
-## Cara Menjalankan Aplikasi
-Untuk menjalankan aplikasi dengan performa penuh dan memuat style tampilan dengan benar, Anda harus mengaktifkan dua terminal secara bersamaan:
-
-### Terminal 1: Server Lokal Laravel
-Jalankan perintah ini untuk menyalakan server lokal PHP Laravel:
+6.  **Jalankan** migrasi database dan isi data awal (seeder):
 ```bash
-php artisan serve
-```
+    php artisan migrate --seed
+   ```
 
-### Terminal 2: Vite Development Server
-Jalankan perintah ini untuk mengompilasi dan memantau perubahan pada file CSS dan JavaScript secara real-time:
+---
+
+## 🏃‍♂️ Cara Menjalankan Aplikasi
+
+Untuk menjalankan aplikasi dengan performa penuh dan memuat style tampilan kustom dengan benar, Anda harus mengaktifkan dua server secara bersamaan dalam dua jendela terminal:
+
+1.  **Jalankan Server Lokal PHP Laravel** (Backend):
+   Akses terminal pertama dan jalankan perintah:
 ```bash
-npm run dev
-```
-Terminal ini harus tetap aktif selama Anda mengembangkan atau menggunakan aplikasi agar aset visual kustom termuat dengan sempurna.
+    php artisan serve
+   ```
+   Aplikasi Anda sekarang dapat diakses di `http://127.0.0.1:8000`.
+
+2.  **Jalankan Vite Development Server** (Frontend Assets):
+    Akses terminal kedua dan jalankan perintah:
+```bash
+    npm run dev
+   ```
+   > [!IMPORTANT]
+   > **Perhatian:** Terminal Vite ini **harus tetap aktif** selama Anda mengembangkan atau menggunakan aplikasi agar seluruh aset visual kustom, gaya styling CSS, dan fungsi interaktif JavaScript termuat dengan sempurna di browser.
+
+---
+
+## 📂 Struktur Folder Utama Proyek
+
+Berikut adalah peta folder penting yang mengontrol fungsionalitas aplikasi SIMANIS:
+
+- `app/Http/Controllers/` : Berisi logic utama pengontrol fitur (`barangController.php`, `transaksiController.php`, `LaporanController.php`, `loginController.php`, dll.).
+- `app/Models/` : Berisi representasi objek database (`Barang.php`, `Kategori.php`, `Transaksi.php`, `Pengeluaran.php`, `User.php`).
+- `database/migrations/` : File cetak biru (*blueprint*) untuk pembuatan struktur tabel database MySQL secara otomatis.
+- `resources/views/backend/` : Kumpulan berkas tampilan antarmuka (UI) admin yang dibagi per modul (e.g., `v_barang`, `v_transaksi`, `v_laporan`, `v_layouts`).
+- `resources/css/` : Berkas CSS kustom yang mengatur tata letak login, dashboard, tabel stok, halaman riwayat, hingga layout cetak PDF.
+- `routes/web.php` : Berkas yang mendefinisikan seluruh jalur URL aplikasi dan proteksi middleware login.
+
+---
+
+<br/>
+<div align="center">
+  Dibuat dengan ❤️ oleh <h2>The Kentangs</h2> untuk Proyek Kuliah Semester 4
+</div>
