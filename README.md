@@ -1,4 +1,4 @@
-# <img src="logo_dummy.png" alt="SIMANIS Logo" width="50"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
+# <img src="backend\images\SIMANIS-no-bg.png" alt="SIMANIS Logo" width="50"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
 
 [![Build Status](https://img.shields.io/github/workflow/status/El-Syarief/laravel-smt-4/CI?style=flat-square)](https://github.com/El-Syarief/laravel-smt-4/actions)
 [![PHP Version](https://img.shields.io/badge/php-%22%23%2F%3E%2F8.1-%22%23%2F%3E%2F-777BB4.svg?style=flat-square)](https://php.net/)
@@ -58,17 +58,17 @@ Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
 ```bash
     git clone [https://github.com/El-Syarief/laravel-smt-4.git](https://github.com/El-Syarief/laravel-smt-4.git)
     cd laravel-smt-4
-    ```
+   ```
 
 2.  **Instal** dependensi PHP menggunakan Composer:
 ```bash
     composer install
-    ```
+   ```
 
 3.  **Instal** dependensi JavaScript menggunakan NPM:
 ```bash
     npm install
-    ```
+   ```
 
 4.  **Konfigurasi Environment**:
     Buat file konfigurasi `.env` baru di direktori utama proyek, lalu salin dan tempel konfigurasi dasar di bawah ini. Sesuaikan kredensial database Anda jika diperlukan:
@@ -97,17 +97,17 @@ Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
     QUEUE_CONNECTION=sync
     SESSION_DRIVER=file
     SESSION_LIFETIME=120
-    ```
+   ```
 
 5.  **Generate** kunci enkripsi aplikasi:
 ```bash
     php artisan key:generate
-    ```
+   ```
 
 6.  **Jalankan** migrasi database dan isi data awal (seeder):
 ```bash
     php artisan migrate --seed
-    ```
+   ```
 
 ---
 
@@ -119,17 +119,17 @@ Untuk menjalankan aplikasi dengan performa penuh dan memuat style tampilan kusto
     Akses terminal pertama dan jalankan perintah:
 ```bash
     php artisan serve
-    ```
+   ```
     Aplikasi Anda sekarang dapat diakses di `http://127.0.0.1:8000`.
 
 2.  **Jalankan Vite Development Server** (Frontend Assets):
     Akses terminal kedua dan jalankan perintah:
 ```bash
     npm run dev
-    ```
-    <div style="background-color: #2e3b4e; border-left: 5px solid #646cff; color: #fff; padding: 1em; border-radius: 5px; margin-top: 1em;">
+   ```
+   <div style="background-color: #2e3b4e; border-left: 5px solid #646cff; color: #fff; padding: 1em; border-radius: 5px; margin-top: 1em;">
         <strong>Perhatian:</strong> Terminal ini <u>harus tetap aktif</u> selama Anda mengembangkan atau menggunakan aplikasi agar aset visual kustom termuat dengan sempurna.
-    </div>
+   </div>
 
 ---
 
