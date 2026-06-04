@@ -1,4 +1,4 @@
-# <img src="public/backend/images/simanis-doang.png" alt="SIMANIS Logo" width="50"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
+# <img src="public/backend/images/simanis-doang.png" alt="SIMANIS Logo" width="40" valign="middle"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
 
 [![Build Status](https://img.shields.io/github/workflow/status/El-Syarief/laravel-smt-4/CI?style=flat-square)](https://github.com/El-Syarief/laravel-smt-4/actions)
 [![PHP Version](https://img.shields.io/badge/php-%22%23%2F%3E%2F8.1-%22%23%2F%3E%2F-777BB4.svg?style=flat-square)](https://php.net/)
@@ -116,20 +116,32 @@ Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
 Untuk menjalankan aplikasi dengan performa penuh dan memuat style tampilan kustom dengan benar, Anda harus mengaktifkan dua server secara bersamaan dalam dua jendela terminal:
 
 1.  **Jalankan Server Lokal PHP Laravel** (Backend):
-    Akses terminal pertama dan jalankan perintah:
+   Akses terminal pertama dan jalankan perintah:
 ```bash
     php artisan serve
    ```
-    Aplikasi Anda sekarang dapat diakses di `http://127.0.0.1:8000`.
+   Aplikasi Anda sekarang dapat diakses di `http://127.0.0.1:8000`.
 
 2.  **Jalankan Vite Development Server** (Frontend Assets):
     Akses terminal kedua dan jalankan perintah:
 ```bash
     npm run dev
    ```
-   <div style="background-color: #2e3b4e; border-left: 5px solid #646cff; color: #fff; padding: 1em; border-radius: 5px; margin-top: 1em;">
-        <strong>Perhatian:</strong> Terminal ini <u>harus tetap aktif</u> selama Anda mengembangkan atau menggunakan aplikasi agar aset visual kustom termuat dengan sempurna.
-   </div>
+   > [!IMPORTANT]
+   > **Perhatian:** Terminal Vite ini **harus tetap aktif** selama Anda mengembangkan atau menggunakan aplikasi agar seluruh aset visual kustom, gaya styling CSS, dan fungsi interaktif JavaScript termuat dengan sempurna di browser.
+
+---
+
+## 📂 Struktur Folder Utama Proyek
+
+Berikut adalah peta folder penting yang mengontrol fungsionalitas aplikasi SIMANIS:
+
+- `app/Http/Controllers/` : Berisi logic utama pengontrol fitur (`barangController.php`, `transaksiController.php`, `LaporanController.php`, `loginController.php`, dll.).
+- `app/Models/` : Berisi representasi objek database (`Barang.php`, `Kategori.php`, `Transaksi.php`, `Pengeluaran.php`, `User.php`).
+- `database/migrations/` : File cetak biru (*blueprint*) untuk pembuatan struktur tabel database MySQL secara otomatis.
+- `resources/views/backend/` : Kumpulan berkas tampilan antarmuka (UI) admin yang dibagi per modul (e.g., `v_barang`, `v_transaksi`, `v_laporan`, `v_layouts`).
+- `resources/css/` : Berkas CSS kustom yang mengatur tata letak login, dashboard, tabel stok, halaman riwayat, hingga layout cetak PDF.
+- `routes/web.php` : Berkas yang mendefinisikan seluruh jalur URL aplikasi dan proteksi middleware login.
 
 ---
 
