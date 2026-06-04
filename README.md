@@ -1,71 +1,104 @@
-HEAD
-# Laravel-Smt-4
-Project laravel semester 4 SIMANIS-HOGWARTS
+# SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Aplikasi SIMANIS adalah sistem manajemen stok barang, pencatatan transaksi, dan pelaporan keuangan berbasis web yang dikembangkan menggunakan framework Laravel dan Vite sebagai aset bundler untuk memenuhi tugas atau proyek kuliah Semester 4.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Fitur Utama
 
-## About Laravel
+Sistem ini dilengkapi dengan berbagai modul backend dan tampilan kustom untuk mempermudah operasional toko atau manajemen inventaris:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+*   **Autentikasi Pengguna**: Fitur registrasi, login, sistem proteksi session, serta pengaturan lupa kata sandi.
+*   **Dasbor Interaktif**: Halaman beranda khusus backend untuk memantau ringkasan data inventaris dan penjualan secara cepat.
+*   **Manajemen Kategori & Barang**: Fitur untuk menambah, mengubah, melihat daftar barang, serta menambah jumlah stok barang secara dinamis.
+*   **Pencatatan Transaksi**: Fitur transaksi penjualan/pembelian lengkap dengan riwayat (*history*) transaksi mendetail untuk melacak performa toko.
+*   **Manajemen Beban & Pengeluaran**: Pencatatan pengeluaran operasional di luar transaksi barang untuk kalkulasi neraca keuangan yang akurat.
+*   **Laporan Keuangan & Ekspor PDF**: Pembuatan laporan berkala yang dapat diunduh langsung dalam format file PDF menggunakan template cetak kustom.
+*   **Manajemen Profil**: Halaman khusus bagi pengguna yang sedang masuk untuk memperbarui informasi akun mereka sendiri.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Teknologi yang Digunakan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   **Framework PHP**: Laravel (v10 / v11)
+*   **Build Tool / Asset Bundler**: Vite (untuk efisiensi kompilasi CSS dan JavaScript)
+*   **Database Server**: MySQL / MariaDB
+*   **Bahasa Pemrograman Backend**: PHP, JavaScript
+*   **Bahasa Pemrograman Frontend**: Blade (Laravel Template Engine), HTML5, CSS3 kustom
 
-## Learning Laravel
+## Panduan Instalasi Lokal
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ikuti langkah-langkah di bawah ini untuk memasang dan menjalankan aplikasi ini di komputer Anda:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Prasyarat Sistem
+Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
+*   PHP (Minimal versi 8.1 atau versi terbaru)
+*   Composer
+*   Node.js & NPM
+*   Aplikasi Database Server (seperti XAMPP, Laragon, atau MySQL CLI)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Langkah Pemasangan
 
-## Laravel Sponsors
+1. **Clone Proyek & Masuk ke Direktori**
+```bash
+   cd laravel-smt-4
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Instal Dependensi Backend (Composer)**
+```bash
+   composer install
 
-### Premium Partners
+3. **Instal Dependensi Frontend (NPM)**
+```bash
+   npm install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Membuat File Konfigurasi .env Baru**
+   Buat file baru bernama .env di direktori utama proyek, lalu salin dan tempel konfigurasi dasar di bawah ini:
+   APP_NAME=Laravel
+   APP_ENV=local
+   APP_KEY=
+   APP_DEBUG=true
+   APP_URL=http://localhost
 
-## Contributing
+   LOG_CHANNEL=stack
+   LOG_DEPRECATIONS_CHANNEL=null
+   LOG_LEVEL=debug
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=db_simanis
+   DB_USERNAME=root
+   DB_PASSWORD=
 
-## Code of Conduct
+   BROADCAST_DRIVER=log
+   CACHE_DRIVER=file
+   FILESYSTEM_DISK=local
+   QUEUE_CONNECTION=sync
+   SESSION_DRIVER=file
+   SESSION_LIFETIME=120
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Generate Application Key**
+   Buat kunci enkripsi unik untuk aplikasi Anda dengan menjalankan perintah:
+```bash
+   php artisan key:generate
+```
 
-## Security Vulnerabilities
+6. **Jalankan Migrasi & Data Seeder**
+   Kirimkan semua skema tabel dan isi data awal (seperti akun bawaan) ke dalam database Anda:
+```bash
+   php artisan migrate --seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Cara Menjalankan Aplikasi
+Untuk menjalankan aplikasi dengan performa penuh dan memuat style tampilan dengan benar, Anda harus mengaktifkan dua terminal secara bersamaan:
 
-## License
+### Terminal 1: Server Lokal Laravel
+Jalankan perintah ini untuk menyalakan server lokal PHP Laravel:
+```bash
+php artisan serve
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-c755316 (first commit)
+### Terminal 2: Vite Development Server
+Jalankan perintah ini untuk mengompilasi dan memantau perubahan pada file CSS dan JavaScript secara real-time:
+```bash
+npm run dev
+```
+Terminal ini harus tetap aktif selama Anda mengembangkan atau menggunakan aplikasi agar aset visual kustom termuat dengan sempurna.
