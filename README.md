@@ -1,4 +1,4 @@
-# <img src="public/backend/images/SIMANIS-no-bg.png" alt="SIMANIS Logo" width="50"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
+# <img src="public/backend/images/simanis-doang.png" alt="SIMANIS Logo" width="50"> SIMANIS - Sistem Informasi Manajemen dan Transaksi (Semester 4)
 
 [![Build Status](https://img.shields.io/github/workflow/status/El-Syarief/laravel-smt-4/CI?style=flat-square)](https://github.com/El-Syarief/laravel-smt-4/actions)
 [![PHP Version](https://img.shields.io/badge/php-%22%23%2F%3E%2F8.1-%22%23%2F%3E%2F-777BB4.svg?style=flat-square)](https://php.net/)
